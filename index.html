@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iqbal Fadillah — Portfolio</title>
+
+    <!-- Preconnect ke CDN luar agar koneksi lebih cepat & optimal -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+     <!-- Fonts Google: Plus Jakarta Sans & Space Mono (Asynchronous loading agar tidak render-blocking) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    </noscript>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portfolio of Iqbal Fadillah, an Informatics Engineering student and Web Developer specializing in Laravel, Tailwind CSS, and UI/UX Design. Based in Sumedang, Indonesia.">
+    <meta name="keywords" content="Iqbal Fadillah, Web Developer, Laravel, UI/UX, Portfolio, Developer Indonesia, Informatics Engineering">
+    <meta name="author" content="Iqbal Fadillah">
+    <meta property="og:title" content="Iqbal Fadillah — Portfolio">
+    <meta property="og:description" content="Software engineering & clean design. Building digital products and experiences.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://iqbaalfadillah.com/">
+    
+    <!-- Favicon Pill Navbar (Dark Capsule + Dot) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2250%22 fill=%22%230a0a0a%22/><circle cx=%2250%22 cy=%2250%22 r=%2225%22 fill=%22%23ffffff%22/></svg>">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Remixicon CDN (Asynchronous loading) -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    </noscript>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace'],
+                    },
+                    colors: {
+                        mono: {
+                            bg: '#000000',
+                            card: '#09090b',
+                            border: '#27272a',
+                            subtle: '#18181b',
+                            muted: '#a1a1aa',
+                            light: '#f4f4f5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .bg-dot-grid {
+            background-image: radial-gradient(#27272a 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glow-white {
+            box-shadow: 0 0 30px -5px rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body class="bg-mono-bg text-mono-muted font-sans antialiased bg-dot-grid min-h-screen selection:bg-white selection:text-black">
+
+<!-- 1. FLOATING NAVBAR (RESPONSIVE) -->
+<div class="fixed top-5 inset-x-0 z-50 flex justify-center px-4" x-data="{ open: false }">
+    <nav class="w-full max-w-3xl bg-mono-card/90 backdrop-blur-md border border-mono-border/80 rounded-full px-5 py-2.5 flex items-center justify-between shadow-2xl transition-all duration-300 hover:border-mono-muted/40">
+        
+        <!-- Brand Logo -->
+        <a href="#" class="text-white font-semibold tracking-tight text-sm hover:opacity-80 transition">
+            iqbal<span class="text-mono-muted">fadillah</span>
+        </a>
+        
+        <!-- Desktop Links -->
+        <div class="hidden sm:flex items-center space-x-5 text-xs font-medium tracking-wide">
+            <a href="#about" class="nav-link text-mono-muted hover:text-white transition" data-target="about">ABOUT</a>
+            <a href="#work" class="nav-link text-mono-muted hover:text-white transition" data-target="work">WORK</a>
+            <a href="#experience" class="nav-link text-mono-muted hover:text-white transition" data-target="experience">EXPERIENCE</a>
+            <a href="#contact" class="nav-link text-mono-muted hover:text-white transition" data-target="contact">CONTACT</a>
+        </div>
+
+        <!-- Right Side: Status Pill & Mobile Toggle -->
+        <div class="flex items-center space-x-3">
+            <!-- Monochrome Compact Status Pill -->
+            <a href="#contact" class="flex items-center space-x-2 text-xs bg-mono-subtle border border-mono-border px-3 py-1.5 rounded-full hover:border-white/50 transition">
+                <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                <span class="text-white font-mono text-[11px] tracking-wide">AVAILABLE</span>
+            </a>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="menu-btn" class="sm:hidden text-white focus:outline-none p-1" aria-label="Toggle Navigation Menu">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+    </nav>
+
+<!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden absolute top-16 inset-x-4 bg-mono-card/95 backdrop-blur-lg border border-mono-border rounded-2xl p-5 shadow-2xl sm:hidden flex flex-col space-y-4 text-xs font-medium">
+        <a href="#about" class="mobile-link nav-link text-mono-muted hover:text-white transition py-1" data-target="about">ABOUT</a>
+        <a href="#work" class="mobile-link nav-link text-mono-muted hover:text-white transition py-1" data-target="work">WORK</a>
+        <a href="#experience" class="mobile-link nav-link text-mono-muted hover:text-white transition py-1" data-target="experience">EXPERIENCE</a>
+        <a href="#contact" class="mobile-link nav-link text-mono-muted hover:text-white transition py-1" data-target="contact">CONTACT</a>
+    </div>
+</div>
+
+<!-- 2. HERO SECTION -->
+    <section class="pt-28 sm:pt-32 pb-20 px-6 max-w-5xl mx-auto min-h-[85vh] flex flex-col justify-center">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <!-- Left Info -->
+            <div class="lg:col-span-7 space-y-6">
+                <!-- Headline with Subtle Gradient Accent -->
+                <h1 class="text-4xl sm:text-6xl font-bold text-white tracking-tight leading-[1.08]">
+                    Building digital products & <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-mono-muted">experiences.</span>
+                </h1>
+
+                <!-- Subheadline -->
+                <p class="text-mono-muted text-base sm:text-lg max-w-xl leading-relaxed font-normal">
+                    Hi, I’m <strong class="text-white font-medium">Iqbal Fadillah</strong>. An Informatics Engineering student and developer focused on creating clean, functional, and solution-driven digital products.
+                </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap gap-3 pt-2 font-medium text-xs tracking-wide">
+                <a href="#work" class="px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-slate-200 transition-all duration-200 shadow-lg shadow-white/5 flex items-center gap-2" aria-label="View Projects Section">
+                    VIEW PROJECTS <span>→</span>
+                </a>
+                <a href="#contact" class="px-6 py-3 bg-mono-card border border-mono-border text-white rounded-lg hover:bg-mono-subtle hover:border-mono-muted/50 transition-all duration-200" aria-label="Get in Touch Section">
+                    GET IN TOUCH
+                </a>
+            </div>
+            </div>
+
+            <!-- Right: Photo Card (Bento Style dengan Efek Miring Polaroid) -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="w-full max-w-[400px] bg-mono-card/90 backdrop-blur-sm border border-mono-border/80 rounded-2xl overflow-hidden glow-white relative group h-[400px] flex flex-col justify-end p-6 hover:border-mono-muted/50 transition-all duration-500 rotate-2 hover:rotate-0 shadow-2xl">
+                    
+                    <!-- Background Image dengan Grayscale & Zoom Effect -->
+                    <div class="absolute inset-0 z-0">
+                        <img src="img/profil.webp" alt="Iqbal Fadillah" style="object-position: 50% 75%; transform: scale(1.5);" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-[1.6] transition-all duration-700">                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    </div>
+
+                    <!-- Content / Caption di atas Foto -->
+                    <div class="relative z-10 space-y-2">
+                        <div class="flex items-center gap-2 font-mono text-xs">
+                            <span class="text-white font-bold tracking-wider">IQBAL FADILLAH</span>
+                        </div>
+                        <p class="text-mono-muted text-xs font-sans">
+                            Informatics Engineering Student & Web Developer based in Sumedang.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<!-- 3. ABOUT SECTION -->
+<section id="about" class="scroll-mt-24 py-20 px-6 max-w-5xl mx-auto border-t border-white/10">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-start justify-between mb-10 gap-4">
+        <div>
+            <span class="text-xs font-mono tracking-[0.25em] text-mono-muted uppercase block mb-3">ABOUT ME</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-snug max-w-2xl">
+                Combining software engineering principles with a clean, minimalist design approach.
+            </h2>
+        </div>
+        <!-- Lokasi -->
+        <div class="font-mono text-xs text-mono-muted md:text-right pt-1">
+            Based in Sumedang, ID
+        </div>
+    </div>
+
+    <!-- Two Columns Description -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-mono-muted leading-relaxed text-base font-normal">
+        <p>
+            As an Informatics Engineering student at <strong class="text-white font-medium">Universitas Sebelas April</strong>, I am accustomed to building systems <strong class="text-white font-medium">end-to-end</strong>. My philosophy is straightforward: a digital product should be intuitive, fast, and deliver practical solutions to users.
+        </p>
+        <p>
+            Beyond coding, I focus on exploring modern web technologies, optimizing development workflows, and building tools that support local businesses and <strong class="text-white font-medium">open-source initiatives</strong>.
+        </p>
+    </div>
+
+</section>
+
+<!-- 4. CAPABILITIES SECTION -->
+    <section id="capabilities" class="py-20 px-6 max-w-5xl mx-auto border-t border-white/10">
+        <!-- Section Header -->
+        <div class="mb-10">
+            <span class="text-xs font-mono tracking-[0.25em] text-mono-muted uppercase block mb-2">CAPABILITIES</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Technical Expertise & Services
+            </h2>
+        </div>
+
+        <!-- 2x2 Grid Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            
+            <!-- Card 1 -->
+            <div class="bg-mono-card/60 border border-mono-border rounded-xl p-6 hover:border-white/40 hover:-translate-y-1 transition-all duration-300 group">
+                <h3 class="text-white font-semibold text-lg mb-2 group-hover:text-white transition">
+                    Full-Stack Web Dev
+                </h3>
+                <p class="text-mono-muted text-sm leading-relaxed mb-4">
+                    Building robust web applications using Laravel, PHP, and MySQL with structured and secure architecture.
+                </p>
+                <div class="flex flex-wrap gap-2 font-mono text-[10px] text-mono-muted">
+                    <span class="px-2 py-0.5 rounded bg-mono-subtle border border-mono-border">Laravel</span>
+                    <span class="px-2 py-0.5 rounded bg-mono-subtle border border-mono-border">PHP</span>
+                    <span class="px-2 py-0.5 rounded bg-mono-subtle border border-mono-border">MySQL</span>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-mono-card/60 border border-mono-border rounded-xl p-6 hover:border-white/40 hover:-translate-y-1 transition-all duration-300 group">
+                <h3 class="text-white font-semibold text-lg mb-2 group-hover:text-white transition">
+                    Frontend & Interface Dev
+                </h3>
+                <p class="text-mono-muted text-sm leading-relaxed mb-4">
+                    Crafting clean, fast, and fully responsive user interfaces using Tailwind CSS and modern JavaScript.
+                </p>
+                <div class="flex flex-wrap gap-2 font-mono text-[10px] text-mono-muted">
+                    <span class="px-2 py-0.5 rounded bg-mono-subtle border border-mono-border">Tailwind CSS</span>
+                    <span class="px-2 py-0.5 rounded bg-mono-subtle border border-mono-border">JavaScript</span>
+                    <span class="px-2 py-0.5 rounded bg-mono-subtle border border-mono-border">HTML5/CSS3</span>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-mono-card/60 border border-mono-border rounded-xl p-6 hover:border-white/40 hover:-translate-y-1 transition-all duration-300 group">
+                <h3 class="text-white font-semibold text-lg mb-2 group-hover:text-white transition">
+                    Performance & Optimization
+                </h3>
+                <p class="text-mono-muted text-sm leading-relaxed mb-4">
+                    Optimizing web assets, structure, and database queries for maximum speed and search visibility.
+                </p>
+                <div class="flex flex-wrap gap-2 font-mono text-[10px] text-mono-muted">
+                    <span class="px-2 py-0.5 rounded bg-mono-subtle border border-mono-border">SEO</span>
+                    <span class="px-2 py-0.5 rounded bg-mono-subtle border border-mono-border">Web Vitals</span>
+                    <span class="px-2 py-0.5 rounded bg-mono-subtle border border-mono-border">Database Query</span>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-mono-card/60 border border-mono-border rounded-xl p-6 hover:border-white/40 hover:-translate-y-1 transition-all duration-300 group">
+                <h3 class="text-white font-semibold text-lg mb-2 group-hover:text-white transition">
+                    Digital Solutions
+                </h3>
+                <p class="text-mono-muted text-sm leading-relaxed mb-4">
+                    Helping local initiatives and businesses digitize their operations with scalable web platforms.
+                </p>
+                <div class="flex flex-wrap gap-2 font-mono text-[10px] text-mono-muted">
+                    <span class="px-2 py-0.5 rounded bg-mono-subtle border border-mono-border">Web Systems</span>
+                    <span class="px-2 py-0.5 rounded bg-mono-subtle border border-mono-border">Digitization</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<!-- 5. SELECTED WORK SECTION (ALIGNED HEADER) -->
+<section id="work" class="scroll-mt-24 py-20 px-6 max-w-5xl mx-auto border-t border-white/10">
+        <!-- Section Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <div>
+            <span class="text-xs font-mono tracking-[0.25em] text-mono-muted uppercase block mb-2">SELECTED WORK</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Featured Projects</h2>
+        </div>
+        <span class="font-mono text-xs text-mono-muted">2024 — PRESENT</span>
+    </div>
+
+    <!-- Projects Stack -->
+    <div class="space-y-10">
+        
+        <!-- Project 1: KREATIFIN -->
+        <div class="bg-mono-card border border-mono-border rounded-xl overflow-hidden hover:border-white/40 transition-all duration-300 group p-6 sm:p-8 glow-white">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+                
+                <!-- Left Column: Details -->
+                <div class="lg:col-span-5 flex flex-col justify-between order-2 lg:order-1">
+                    <div>
+                        <span class="font-mono text-xs text-mono-muted tracking-wider uppercase block mb-1">PLATFORM / WEB APPLICATION</span>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-slate-200 transition mb-3">KREATIFIN</h3>
+                        <p class="text-mono-muted text-sm leading-relaxed mb-6">
+                            A collaborative platform designed to connect creative industry players, content creators, and local talent within an integrated ecosystem.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-white/5">
+                        <div class="flex flex-wrap items-center justify-between gap-3">
+                            <!-- Tech Stack Badges -->
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                                <span class="px-2.5 py-1 bg-mono-subtle border border-mono-border rounded text-mono-muted">Laravel</span>
+                                <span class="px-2.5 py-1 bg-mono-subtle border border-mono-border rounded text-mono-muted">Tailwind</span>
+                                <span class="px-2.5 py-1 bg-mono-subtle border border-mono-border rounded text-mono-muted">MySQL</span>
+                            </div>
+                            <!-- Compact CTA Button -->
+                    <a href="https://github.com/iqbaalfd/kreatifin" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white text-black font-semibold text-xs rounded-lg hover:bg-slate-200 transition shrink-0" aria-label="Visit Kreatif-in website (opens in a new tab)">
+                        VISIT SITE ↗
+                    </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Image Preview -->
+                <div class="lg:col-span-7 order-1 lg:order-2 flex items-center">
+                    <div class="w-full rounded-lg overflow-hidden border border-white/10 bg-mono-subtle p-2 sm:p-2.5 relative group/img">
+                        <div class="rounded-md overflow-hidden relative border border-white/10 bg-black/40">
+                            <!-- Zoom Hint Badge -->
+                            <div class="absolute top-3 right-3 z-10 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] font-mono text-white/90 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 pointer-events-none border border-white/20 flex items-center gap-1 shadow-lg">
+                                <span>🔍</span> CLICK TO ZOOM
+                            </div>
+                            <img src="img/kreatifin.webp" 
+                                 alt="KREATIFIN Preview" 
+                                 loading="lazy" 
+                                 onclick="openZoom(this.src)"
+                                 class="w-full h-52 sm:h-64 object-cover object-top cursor-zoom-in grayscale group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-500">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Project 2: Madani Digital Printing -->
+        <div class="bg-mono-card border border-mono-border rounded-xl overflow-hidden hover:border-white/40 transition-all duration-300 group p-6 sm:p-8 glow-white">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+                
+                <!-- Left Column: Details -->
+                <div class="lg:col-span-5 flex flex-col justify-between order-2 lg:order-1">
+                    <div>
+                        <span class="font-mono text-xs text-mono-muted tracking-wider uppercase block mb-1">BUSINESS / LANDING PAGE</span>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-slate-200 transition mb-3">Madani Digital Printing</h3>
+                        <p class="text-mono-muted text-sm leading-relaxed mb-6">
+                            High-performance landing page optimized for local SEO to increase online reach and conversion for a digital printing business.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-white/5">
+                        <div class="flex flex-wrap items-center justify-between gap-3">
+                            <!-- Tech Stack Badges -->
+                            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                                <span class="px-2.5 py-1 bg-mono-subtle border border-mono-border rounded text-mono-muted">HTML / JS</span>
+                                <span class="px-2.5 py-1 bg-mono-subtle border border-mono-border rounded text-mono-muted">Tailwind</span>
+                                <span class="px-2.5 py-1 bg-mono-subtle border border-mono-border rounded text-mono-muted">SEO</span>
+                            </div>
+                            <!-- Compact CTA Button -->
+                            <a href="https://madani-printing.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white text-black font-semibold text-xs rounded-lg hover:bg-slate-200 transition shrink-0" aria-label="Visit Kreatif-in website (opens in a new tab)">
+                                VISIT SITE ↗
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Image Preview -->
+                <div class="lg:col-span-7 order-1 lg:order-2 flex items-center">
+                    <div class="w-full rounded-lg overflow-hidden border border-white/10 bg-mono-subtle p-2 sm:p-2.5 relative group/img">
+                        <div class="rounded-md overflow-hidden relative border border-white/10 bg-black/40">
+                            <!-- Zoom Hint Badge -->
+                            <div class="absolute top-3 right-3 z-10 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] font-mono text-white/90 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 pointer-events-none border border-white/20 flex items-center gap-1 shadow-lg">
+                                <span>🔍</span> CLICK TO ZOOM
+                            </div>
+                            <img src="img/madani.webp" 
+                                 alt="Madani Digital Printing Preview" 
+                                 loading="lazy" 
+                                 onclick="openZoom(this.src)"
+                                 class="w-full h-52 sm:h-64 object-cover object-top cursor-zoom-in grayscale group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-500">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Project Placeholder -->
+        <div class="p-6 border border-dashed border-mono-border rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+            <span class="text-mono-muted">MORE PROJECTS & INITIATIVES IN PROGRESS...</span>
+            <span class="text-white bg-mono-card px-3 py-1.5 rounded border border-mono-border">2026 UPDATES</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- 6. EDUCATION & EXPERIENCE SECTION -->
+<section id="experience" class="scroll-mt-24 py-20 px-6 max-w-5xl mx-auto border-t border-white/10">
+    
+    <!-- Section Header -->
+    <div class="mb-16">
+        <span class="text-xs font-mono tracking-[0.25em] text-mono-muted uppercase block mb-3">BACKGROUND</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-snug">
+            Education & Experience.
+        </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        
+        <!-- KOLOM KIRI: EDUCATION -->
+        <div class="space-y-12 relative border-l border-white/10 pl-6 ml-2">
+            <h3 class="text-xs font-mono text-mono-muted tracking-wider uppercase -ml-6 mb-6 pl-6">EDUCATION</h3>
+            
+            <!-- Item 1 -->
+            <div class="relative group">
+                <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-black border-2 border-white/40 group-hover:border-white transition-colors"></div>
+                <div class="flex items-center justify-between gap-3 mb-2">
+                    <div class="flex items-center gap-2.5">
+                        <img src="img/unsap.webp" alt="UNSAP" class="w-5 h-5 object-contain rounded">
+                        <span class="text-xs font-mono text-mono-muted">2023 - Present</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-white">Sem 7</span>
+                </div>
+                <h4 class="text-base font-bold text-white">Universitas Sebelas April</h4>
+                <p class="text-xs font-mono text-mono-muted mt-0.5">S1 - Teknik Informatika</p>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="relative group">
+                <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-black border-2 border-white/40 group-hover:border-white transition-colors"></div>
+                <div class="flex items-center justify-between gap-3 mb-2">
+                    <div class="flex items-center gap-2.5">
+                        <img src="img/nesas.webp" alt="SMKN 1 Sumedang" class="w-5 h-5 object-contain rounded">
+                        <span class="text-xs font-mono text-mono-muted">2020 - 2023</span>
+                    </div>
+                </div>
+                <h4 class="text-base font-bold text-white">SMKN 1 Sumedang</h4>
+                <p class="text-xs font-mono text-mono-muted mt-0.5">Rekayasa Perangkat Lunak (RPL)</p>
+            </div>
+        </div>
+
+        <!-- KOLOM KANAN: EXPERIENCE -->
+        <div class="space-y-12 relative border-l border-white/10 pl-6 ml-2">
+            <h3 class="text-xs font-mono text-mono-muted tracking-wider uppercase -ml-6 mb-6 pl-6">EXPERIENCE</h3>
+            
+            <!-- Item 1 -->
+            <div class="relative group">
+                <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-black border-2 border-white/40 group-hover:border-white transition-colors"></div>
+                <div class="flex items-center justify-between gap-3 mb-2">
+                    <div class="flex items-center gap-2.5">
+                        <img src="img/logomadani.webp" alt="Madani" class="w-5 h-5 object-contain rounded">
+                        <span class="text-xs font-mono text-mono-muted">3 Years</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-white">Freelance</span>
+                </div>
+                <h4 class="text-base font-bold text-white">Madani Digital Printing</h4>
+                <p class="text-xs font-mono text-mono-muted mt-0.5">Production & Digital Operations</p>
+                <p class="text-xs text-mono-muted mt-2 leading-relaxed">Handling digital operations, client workflows, and production tech support.</p>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="relative group">
+                <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-black border-2 border-white/40 group-hover:border-white transition-colors"></div>
+                <div class="flex items-center justify-between gap-3 mb-2">
+                    <div class="flex items-center gap-2.5">
+                        <img src="img/bmti.webp" alt="BMTI" class="w-5 h-5 object-contain rounded">
+                        <span class="text-xs font-mono text-mono-muted">3 Months</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-white">Internship</span>
+                </div>
+                <h4 class="text-base font-bold text-white">BBPPMPV BMTI</h4>
+                <p class="text-xs font-mono text-mono-muted mt-0.5">IT Support & System Operations</p>
+                <p class="text-xs text-mono-muted mt-2 leading-relaxed">Completed structured fieldwork focusing on tech maintenance and networking.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- 7. CERTIFICATES & CREDENTIALS SECTION (REFINED & MINIMALIST) -->
+<section id="certificates" class="scroll-mt-24 py-16 px-6 max-w-5xl mx-auto border-t border-white/10">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <div>
+            <span class="text-xs font-mono tracking-[0.25em] text-mono-muted uppercase block mb-2">CREDENTIALS</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Licenses & Certificates.
+            </h2>
+        </div>
+        <span class="font-mono text-xs text-mono-muted">VERIFIED BADGES</span>
+    </div>
+
+    <!-- Certificates Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <!-- Cert Item 1 -->
+        <div class="bg-mono-card border border-mono-border rounded-xl p-5 hover:border-white/40 transition-all duration-300 group flex flex-col justify-between gap-4">
+            <div class="space-y-2">
+                <div class="flex items-center justify-between text-[11px] font-mono text-mono-muted">
+                    <span>Google Cloud • Intermediate</span>
+                    <span>Jun 2026</span>
+                </div>
+                <h3 class="text-sm font-bold text-white group-hover:text-slate-200 transition leading-snug">
+                    Build a Secure Google Cloud Network Skill Badge
+                </h3>
+            </div>
+            
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
+                <span class="text-[11px] font-mono text-mono-muted">Security</span>
+                <a href="https://www.credly.com/badges/2f283139-9cae-4a89-9f75-6a0df66516fc" target="_blank" class="text-xs font-mono text-white inline-flex items-center gap-1 hover:underline">
+                    VERIFY ↗
+                </a>
+            </div>
+        </div>
+
+        <!-- Cert Item 2 -->
+        <div class="bg-mono-card border border-mono-border rounded-xl p-5 hover:border-white/40 transition-all duration-300 group flex flex-col justify-between gap-4">
+            <div class="space-y-2">
+                <div class="flex items-center justify-between text-[11px] font-mono text-mono-muted">
+                    <span>Google Cloud • Introductory</span>
+                    <span>Jun 2026</span>
+                </div>
+                <h3 class="text-sm font-bold text-white group-hover:text-slate-200 transition leading-snug">
+                    Implement Load Balancing on Compute Engine Skill Badge
+                </h3>
+            </div>
+            
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
+                <span class="text-[11px] font-mono text-mono-muted">Infrastructure Modernization</span>
+                <a href="https://www.credly.com/badges/40d7e3ef-9275-47e2-94a6-343383ab3869" target="_blank" class="text-xs font-mono text-white inline-flex items-center gap-1 hover:underline">
+                    VERIFY ↗
+                </a>
+            </div>
+        </div>
+
+        <!-- Cert Item 3 -->
+        <div class="bg-mono-card border border-mono-border rounded-xl p-5 hover:border-white/40 transition-all duration-300 group flex flex-col justify-between gap-4">
+            <div class="space-y-2">
+                <div class="flex items-center justify-between text-[11px] font-mono text-mono-muted">
+                    <span>Google Cloud • Introductory</span>
+                    <span>Jun 2026</span>
+                </div>
+                <h3 class="text-sm font-bold text-white group-hover:text-slate-200 transition leading-snug">
+                    Prepare Data for ML APIs on Google Cloud Skill Badge
+                </h3>
+            </div>
+            
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
+                <span class="text-[11px] font-mono text-mono-muted">Smart Analytics</span>
+                <a href="https://www.credly.com/badges/cce4086a-49d2-4d75-a577-341dc40f93c6" target="_blank" class="text-xs font-mono text-white inline-flex items-center gap-1 hover:underline">
+                    VERIFY ↗
+                </a>
+            </div>
+        </div>
+
+        <!-- Cert Item 4 -->
+        <div class="bg-mono-card border border-mono-border rounded-xl p-5 hover:border-white/40 transition-all duration-300 group flex flex-col justify-between gap-4">
+            <div class="space-y-2">
+                <div class="flex items-center justify-between text-[11px] font-mono text-mono-muted">
+                    <span>Google Cloud • Introductory</span>
+                    <span>Jun 2026</span>
+                </div>
+                <h3 class="text-sm font-bold text-white group-hover:text-slate-200 transition leading-snug">
+                    Set Up an App Dev Environment on Google Cloud Skill Badge
+                </h3>
+            </div>
+            
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
+                <span class="text-[11px] font-mono text-mono-muted">Infrastructure Modernization</span>
+                <a href="https://www.credly.com/badges/6d41eb94-7412-4d68-8fb6-9dc1a12bf09b" target="_blank" class="text-xs font-mono text-white inline-flex items-center gap-1 hover:underline">
+                    VERIFY ↗
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- 8. CONTACT SECTION -->
+<section id="contact" class="scroll-mt-24 py-24 px-6 max-w-5xl mx-auto border-t border-white/10">
+    <div class="text-center space-y-10">
+        
+        <div class="space-y-4">
+            <div class="font-mono text-xs text-mono-muted uppercase tracking-widest">GET IN TOUCH</div>
+            <h2 class="text-3xl md:text-5xl font-bold text-white tracking-tight">Let's work together.</h2>
+            <p class="text-mono-muted max-w-lg mx-auto text-sm leading-relaxed">
+                Have a project in mind, need a developer, or just want to connect? Feel free to reach out through any of the platforms below.
+            </p>
+        </div>
+
+        <!-- Contact Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Email -->
+            <a href="mailto:iqbaal.fd@gmail.com" class="group bg-mono-card border border-mono-border p-6 rounded-xl hover:border-white/40 transition duration-300 flex flex-col items-center gap-3 text-center">
+                <div class="p-3.5 bg-mono-subtle rounded-full text-2xl text-mono-muted group-hover:text-white group-hover:scale-110 transition duration-300">
+                    <i class="ri-mail-line"></i>
+                </div>
+                <div class="font-mono text-xs text-mono-muted group-hover:text-white transition break-all">
+                    iqbaal.fd@gmail.com
+                </div>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/iqbaalfd" target="_blank" class="group bg-mono-card border border-mono-border p-6 rounded-xl hover:border-white/40 transition duration-300 flex flex-col items-center gap-3 text-center">
+                <div class="p-3.5 bg-mono-subtle rounded-full text-2xl text-mono-muted group-hover:text-white group-hover:scale-110 transition duration-300">
+                    <i class="ri-github-line"></i>
+                </div>
+                <div class="font-mono text-xs text-mono-muted group-hover:text-white transition">
+                    /iqbaalfd
+                </div>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/iqbaalfdllh" target="_blank" class="group bg-mono-card border border-mono-border p-6 rounded-xl hover:border-white/40 transition duration-300 flex flex-col items-center gap-3 text-center">
+                <div class="p-3.5 bg-mono-subtle rounded-full text-2xl text-mono-muted group-hover:text-white group-hover:scale-110 transition duration-300">
+                    <i class="ri-linkedin-box-line"></i>
+                </div>
+                <div class="font-mono text-xs text-mono-muted group-hover:text-white transition">
+                    /iqbaalfd
+                </div>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://instagram.com/iqbaalfdllh" target="_blank" class="group bg-mono-card border border-mono-border p-6 rounded-xl hover:border-white/40 transition duration-300 flex flex-col items-center gap-3 text-center">
+                <div class="p-3.5 bg-mono-subtle rounded-full text-2xl text-mono-muted group-hover:text-white group-hover:scale-110 transition duration-300">
+                    <i class="ri-instagram-line"></i>
+                </div>
+                <div class="font-mono text-xs text-mono-muted group-hover:text-white transition">
+                    @iqbaalfdllh
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+ <!-- FOOTER -->
+<footer class="py-10 border-t border-mono-border text-center font-mono text-xs text-mono-muted">
+    <div class="max-w-5xl mx-auto px-6">
+        <p>© 2026 Iqbal Fadillah. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- LIGHTBOX / ZOOM MODAL -->
+<div id="imageModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-8 transition-all duration-300 opacity-0 pointer-events-none">
+   <button onclick="closeZoom()" class="absolute top-6 right-6 text-white/70 hover:text-white font-mono text-sm bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition border border-white/10" aria-label="Close image zoom modal">
+    ESC / CLOSE [X]
+</button>
+    <div class="relative max-w-5xl w-full max-h-[85vh] flex items-center justify-center">
+        <img id="modalImg" src="" alt="Zoomed Preview" class="max-w-full max-h-[85vh] object-contain rounded-xl border border-white/20 shadow-2xl">
+    </div>
+</div>
+
+<script>
+    // --- 1. SCRIPT IMAGE LIGHTBOX / ZOOM ---
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+
+    function openZoom(src) {
+        modalImg.src = src;
+        modal.classList.remove('hidden', 'pointer-events-none');
+        modal.classList.add('flex');
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+        }, 10);
+    }
+
+    function closeZoom() {
+        modal.classList.add('opacity-0');
+        setTimeout(() => {
+            modal.classList.add('hidden', 'pointer-events-none');
+            modal.classList.remove('flex');
+            modalImg.src = '';
+        }, 300);
+    }
+
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeZoom();
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeZoom();
+    });
+
+    // --- 2. SCRIPT MOBILE MENU & SCROLLSPY ---
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const links = document.querySelectorAll('.mobile-link');
+
+    if (btn && menu) {
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    }
+
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            if (menu) menu.classList.add('hidden');
+        });
+    });
+
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section[id]');
+        const scrollY = window.scrollY;
+
+        const isAtBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50;
+
+        if (isAtBottom) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('data-target') === 'contact') {
+                    link.classList.remove('text-mono-muted');
+                    link.classList.add('text-white');
+                } else {
+                    link.classList.remove('text-white');
+                    link.classList.add('text-mono-muted');
+                }
+            });
+            return;
+        }
+
+        sections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 120;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    if (link.getAttribute('data-target') === sectionId) {
+                        link.classList.remove('text-mono-muted');
+                        link.classList.add('text-white');
+                    } else {
+                        link.classList.remove('text-white');
+                        link.classList.add('text-mono-muted');
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
