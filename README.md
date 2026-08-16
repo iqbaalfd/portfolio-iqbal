@@ -1,17 +1,21 @@
-Iqbal Fadillah — Personal Portfolio
-Personal portfolio website showcasing my projects, technical capabilities, and professional background as an Informatics Engineering student and Web Developer.
+# Iqbal Fadillah — Portfolio
 
-Tech Stack
-Markup & Styling: HTML5, Tailwind CSS
+A personal portfolio website showcasing my projects, technical expertise, and professional background as an Informatics Engineering student and Web Developer.
 
-Scripting: Vanilla JavaScript
+## Overview
+This repository contains the source code for my personal portfolio website, built with a focus on clean design, performance, and responsive layout. It serves as a centralized hub for my projects and professional identity.
 
-Design & Typography: Plus Jakarta Sans & Space Mono
+## Tech Stack
+* **Markup & Styling:** HTML5, Tailwind CSS
+* **Scripting:** Vanilla JavaScript
+* **Typography:** Plus Jakarta Sans & Space Mono
 
-Featured Projects
-Kreatifin: Collaborative creative platform built with Laravel & Tailwind.
+## Featured Projects
+* **Kreatifin:** A collaborative creative platform built using Laravel and Tailwind CSS.
+* **Madani Digital Printing:** A high-performance business landing page optimized for local SEO.
 
-Madani Digital Printing: High-performance business landing page optimized for local SEO.
+## Live Preview
+You can view the live website here: [iqbalfadillah.vercel.app](https://iqbalfadillah.vercel.app)
 
-Live Preview
-iqbaalfadillah.vercel.app
+## License
+This project is open-source and available under the [MIT License](LICENSE).
